@@ -1,0 +1,56 @@
+@page "/dashboard"
+@using RachaAiBlazor.Models
+@using RachaAiBlazor.Components
+
+<PageTitle>Dashboard - RachaAí</PageTitle>
+
+<div class="container mt-4">
+    <h2 class="mb-4 fw-bold">Olá, Ana! 👋</h2>
+
+    <div class="row mb-5 text-center">
+        <div class="col-md-4 mb-3">
+            <div class="card bg-light p-3 border-0 shadow-sm">
+                <h6 class="text-muted">Total a Receber</h6>
+                <h3 class="text-success">R$ 450,00</h3>
+            </div>
+        </div>
+        <div class="col-md-4 mb-3">
+            <div class="card bg-light p-3 border-0 shadow-sm">
+                <h6 class="text-muted">Total a Pagar</h6>
+                <h3 class="text-danger">R$ 150,00</h3>
+            </div>
+        </div>
+        <div class="col-md-4 mb-3">
+            <div class="card border-primary p-3 shadow-sm">
+                <h6 class="text-primary">Saldo Geral</h6>
+                <h3 class="text-primary">R$ 300,00</h3>
+            </div>
+        </div>
+    </div>
+
+    <h4>Meus Grupos</h4>
+    
+    <div class="row mt-3">
+        @foreach (var item in grupos)
+        {
+            <div class="col-12 col-md-6">
+                <GrupoCard Grupo="item" />
+            </div>
+        }
+    </div>
+
+    <button class="btn btn-dark rounded-circle shadow-lg" 
+            style="position: fixed; bottom: 30px; right: 30px; width: 60px; height: 60px; font-size: 24px;">
+        +
+    </button>
+</div>
+
+@code {
+    private List<Grupo> grupos = new()
+    {
+        new Grupo { Nome = "República Central", Categoria = "Casa", ValorPendente = 450.50m, NoVermelho = true },
+        new Grupo { Nome = "Churrasco de Domingo", Categoria = "Lazer", ValorPendente = 85.00m, NoVermelho = false },
+        new Grupo { Nome = "Viagem Floripa", Categoria = "Viagem", ValorPendente = 1200.00m, NoVermelho = false },
+        new Grupo { Nome = "Netflix & Internet", Categoria = "Contas", ValorPendente = 35.90m, NoVermelho = true }
+    };
+}
